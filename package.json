@@ -1,6 +1,6 @@
 {
   "name": "loopback-testing",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Utilities for testing LoopBack applications",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "async": "~0.9.0",
     "chai": "^1.9.2",
     "lodash": "^2.4.1",
-    "mocha": "~2.0.1",
+    "mocha": "~1.21.4",
     "supertest": "~0.13.0",
     "underscore.string": "^2.3.3"
   },

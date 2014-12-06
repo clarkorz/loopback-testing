@@ -108,7 +108,7 @@ describe('helpers', function () {
       helpers.beforeEach.withApp(testApp, { userModel: Account });
       helpers.beforeEach.givenUser({ email: 'john@doe.com', password: '000000' });
       it('should create an user of Account type', function () {
-        assert(this['account'] instanceof Account);
+        assert(this.account instanceof Account);
       });
     });
   });
@@ -118,7 +118,7 @@ describe('helpers', function () {
       testApp.model(loopback.AccessToken, {dataSource: 'db'});
       helpers.beforeEach.givenAnUnauthenticatedToken({});
       it('should create an accessToken of AccessToken type', function () {
-        assert(this['accessToken'] instanceof loopback.AccessToken);
+        assert(this.accessToken instanceof loopback.AccessToken);
       });
     });
     describe('with custom AccessToken model', function() {
@@ -127,7 +127,7 @@ describe('helpers', function () {
       helpers.beforeEach.withApp(testApp, { accessTokenModel: Token });
       helpers.beforeEach.givenAnUnauthenticatedToken({});
       it('should create an accessToken of Token type', function () {
-        assert(this['token'] instanceof Token);
+        assert(this.token instanceof Token);
       });
     });
   });
