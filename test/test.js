@@ -62,12 +62,6 @@ describe('helpers', function () {
       assert(this['xxx-test-model'].id);
       assert(this['xxx-test-model'] instanceof testModel);
     });
-    it('should have an xxxTestModel property', function () {
-      assert(this['xxxTestModel']);
-      assert(this['xxxTestModel'].id);
-      assert(this['xxxTestModel'] instanceof testModel);
-      assert(this['xxxTestModel'] === this['xxx-test-model']);
-    });
   });
 
   describe('whenCalledRemotely', function() {
@@ -105,10 +99,10 @@ describe('helpers', function () {
     describe('with custom User model', function() {
       var Account = loopback.User.extend('Account');
       testApp.model(Account, {dataSource: 'db'});
-      helpers.beforeEach.withApp(testApp, { userModel: Account });
+      helpers.beforeEach.withApp(testApp, { User: 'Account' });
       helpers.beforeEach.givenUser({ email: 'john@doe.com', password: '000000' });
       it('should create an user of Account type', function () {
-        assert(this.account instanceof Account);
+        assert(this.user instanceof Account);
       });
     });
   });
@@ -124,10 +118,10 @@ describe('helpers', function () {
     describe('with custom AccessToken model', function() {
       var Token = loopback.AccessToken.extend('Token');
       testApp.model(Token, {dataSource: 'db'});
-      helpers.beforeEach.withApp(testApp, { accessTokenModel: Token });
+      helpers.beforeEach.withApp(testApp, { AccessToken: 'Token' });
       helpers.beforeEach.givenAnUnauthenticatedToken({});
       it('should create an accessToken of Token type', function () {
-        assert(this.token instanceof Token);
+        assert(this.accessToken instanceof Token);
       });
     });
   });
