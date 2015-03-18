@@ -148,4 +148,42 @@ describe('helpers', function () {
       });
     });
   });
+
+  describe('helpers.beforeEach.givenUser', function() {
+    describe('with default user model', function() {
+      testApp.model(loopback.User, {dataSource: 'db'});
+      helpers.beforeEach.givenUser({ email: 'john@doe.com', password: '000000' });
+      it('should create an user of User type', function () {
+        assert(this['user'] instanceof loopback.User);
+      });
+    });
+    describe('with custom User model', function() {
+      var Account = loopback.User.extend('Account');
+      testApp.model(Account, {dataSource: 'db'});
+      helpers.beforeEach.withApp(testApp, { User: 'Account' });
+      helpers.beforeEach.givenUser({ email: 'john@doe.com', password: '000000' });
+      it('should create an user of Account type', function () {
+        assert(this.user instanceof Account);
+      });
+    });
+  });
+
+  describe('helpers.beforeEach.givenAnUnauthenticatedToken', function() {
+    describe('with default AccessToken model', function() {
+      testApp.model(loopback.AccessToken, {dataSource: 'db'});
+      helpers.beforeEach.givenAnUnauthenticatedToken({});
+      it('should create an accessToken of AccessToken type', function () {
+        assert(this.accessToken instanceof loopback.AccessToken);
+      });
+    });
+    describe('with custom AccessToken model', function() {
+      var Token = loopback.AccessToken.extend('Token');
+      testApp.model(Token, {dataSource: 'db'});
+      helpers.beforeEach.withApp(testApp, { AccessToken: 'Token' });
+      helpers.beforeEach.givenAnUnauthenticatedToken({});
+      it('should create an accessToken of Token type', function () {
+        assert(this.accessToken instanceof Token);
+      });
+    });
+  });
 });
